@@ -14,11 +14,13 @@ if [ ! -f "init.lock" ]; then
 
     cp src/database_sample.php src/database.php
     echo "Updating database.php with environment variables..."
-    sed -i "s/'servername' => DB username/'servername' => '$DB_HOST'/g" src/database.php
-    sed -i "s/'database' => Database name/'database' => '$DB_DATABASE'/g" src/database.php
-    sed -i "s/'username' => DB username/'username' => '$DB_USERNAME'/g" src/database.php
-    sed -i "s/'password' => DB password/'password' => '$DB_PASSWORD'/g" src/database.php
-
+    sed -i "s/'servername' => 'localhost'/'servername' => '$DB_HOST'/g" src/database.php
+    sed -i "s/'database' => 'sample'/'database' => '$DB_DATABASE'/g" src/database.php
+    sed -i "s/'username' => 'sample'/'username' => '$DB_USERNAME'/g" src/database.php
+    sed -i "s/'password' => 'sample'/'password' => '$DB_PASSWORD'/g" src/database.php
+    
+    echo "Database config file updated."
+    
     echo "Installing composer dependencies..."
     composer install && composer dump-autoload
 
