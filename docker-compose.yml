@@ -6,8 +6,6 @@ services:
       - "80:80"
     networks:
       - leave-network
-    volumes:
-      - .:/var/www/html
     environment:
       - DB_HOST=leave-db
       - DB_DATABASE=leave_db
