@@ -7,6 +7,8 @@ php_value date.timezone Africa/Nairobi
         Options -MultiViews
     </IfModule>
     RewriteEngine On
+
+    # Comment out the code below if not using HTTPS
     RewriteCond %{HTTP:X-Forwarded-Proto} !https
     RewriteCond %{HTTPS} off
     RewriteCond %{HTTP:CF-Visitor} !{"scheme":"https"}
