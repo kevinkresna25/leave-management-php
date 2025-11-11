@@ -3,7 +3,7 @@ set -e
 
 echo "Waiting for database to be ready..."
 
-while ! mysqladmin ping -h"$DB_HOST" -u"$DB_USERNAME" -p"$DB_PASSWORD" --silent; do
+while ! mysqladmin ping -h"$DB_HOST" -u"$DB_USERNAME" -p"$DB_PASSWORD" --ssl-verify-server-cert=false --silent; do
     sleep 1
 done
 echo "Database is ready."
