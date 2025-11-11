@@ -1,0 +1,42 @@
+services:
+  leave-web:
+    build: .
+    container_name: leave-web
+    ports:
+      - "80:80"
+    networks:
+      - leave-network
+    volumes:
+      - .:/var/www/html
+    environment:
+      - DB_HOST=leave-db
+      - DB_DATABASE=leave_db
+      - DB_USERNAME=leave_user
+      - DB_PASSWORD=leave_password
+    depends_on:
+      - db
+    entrypoint: ["/var/www/html/entrypoint.sh"]
+    restart: always
+
+  leave-db:
+    image: mysql:latest
+    container_name: leave-db
+    networks:
+      - leave-network
+    volumes:
+      - leave-db-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: P455word
+      MYSQL_DATABASE: leave_db
+      MYSQL_USER: leave_user
+      MYSQL_PASSWORD: leave_password
+    restart: always
+
+volumes:
+  leave-db-data:
+    name: leave-db-data
+
+networks:
+  leave-network:
+    name: leave-network
+    driver: bridge
