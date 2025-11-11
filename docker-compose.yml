@@ -14,7 +14,7 @@ services:
       - DB_USERNAME=leave_user
       - DB_PASSWORD=leave_password
     depends_on:
-      - db
+      - leave-db
     entrypoint: ["/var/www/html/entrypoint.sh"]
     restart: always
 
